@@ -1,3 +1,4 @@
 rootProject.name = 'spring-boot-training_v2'
 include 'spring-boot-initial'
+include 'spring-boot-today'
 

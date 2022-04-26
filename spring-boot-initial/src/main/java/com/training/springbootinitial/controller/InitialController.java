@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Mono;
 
 @RestController
-@RequestMapping(value = "/springboottraining/api/v1")
+@RequestMapping(value = "/springboottraining/api/v1/initial")
 public class InitialController {
 
     private static final Logger log = LoggerFactory.getLogger(InitialController.class);
