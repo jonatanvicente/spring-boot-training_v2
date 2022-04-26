@@ -2,9 +2,12 @@ spring:
   application:
     name: spring-boot-today
 
-springfox:
-  documentation:
-    auto-startup: false
+springdoc:
+  swagger-ui:
+    path: /swagger-ui-custom.html
+    operationsSorter: method
+  api-docs:
+    path: /api-docs
 
 server:
   port: 8764
