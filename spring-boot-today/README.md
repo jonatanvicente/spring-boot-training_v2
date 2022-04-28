@@ -3,7 +3,7 @@
 ### Highlights
 
 - Reactive Programming (véase https://www.baeldung.com/reactor-core)
-- Swagger disponible en http://localhost:8764/api-docs/ y http://localhost:8764/api-docs/swagger-ui-custom.html
+- Swagger disponible en http://localhost:8764/api-docs/ y http://localhost:8764/swagger-ui-custom.html
 - Actuator:
       - http://localhost:8763/actuator/health (debe responder {"status":"UP"})
       - http://localhost:8763/actuator/auditevents
