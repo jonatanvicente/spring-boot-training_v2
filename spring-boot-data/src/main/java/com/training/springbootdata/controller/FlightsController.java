@@ -4,11 +4,10 @@ package com.training.springbootdata.controller;
 import com.training.springbootdata.entity.Airport;
 import com.training.springbootdata.service.AirportServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import reactor.core.publisher.Mono;
 
 import java.util.List;
 import java.util.Optional;
@@ -42,5 +41,18 @@ public class FlightsController {
         }
         return ResponseEntity.ok(result.get());
     }
+
+    @GetMapping("/airport/count")
+    @ResponseStatus(HttpStatus.OK)
+    public Mono<?> getAirportCount(){
+        return service.airportCount();
+    }
+
+    @GetMapping("/airport/{airportId}")
+    @ResponseStatus(HttpStatus.OK)
+    public Mono<?> getAirportById(@PathVariable String airportId){
+        return service.getAirportById(airportId);
+    }
+
 
 }
