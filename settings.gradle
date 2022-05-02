@@ -2,4 +2,7 @@ rootProject.name = 'spring-boot-training_v2'
 include 'spring-boot-initial'
 include 'spring-boot-today'
 include 'spring-boot-data'
+include 'spring-boot-security'
+include 'spring-boot-security:spring-boot-star-wars'
+findProject(':spring-boot-security:spring-boot-star-wars')?.name = 'spring-boot-star-wars'
 
