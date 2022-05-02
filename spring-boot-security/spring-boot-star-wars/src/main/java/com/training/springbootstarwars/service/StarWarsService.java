@@ -1,7 +1,7 @@
 package com.training.springbootstarwars.service;
 
 import com.training.springbootstarwars.dto.StarWarsVehiclesResultDto;
-import com.training.springbootstarwars.properties.PropertiesConfig;
+import com.training.springbootstarwars.config.PropertiesConfig;
 import com.training.springbootstarwars.proxy.HttpProxy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -2,7 +2,7 @@ package com.training.springbootstarwars.proxy;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.training.springbootstarwars.properties.PropertiesConfig;
+import com.training.springbootstarwars.config.PropertiesConfig;
 import io.netty.channel.ChannelOption;
 import io.netty.handler.timeout.ReadTimeoutHandler;
 import io.netty.handler.timeout.WriteTimeoutHandler;
@@ -35,11 +35,15 @@ public class HttpProxy {
     public HttpProxy(PropertiesConfig config){
         this.config = config;
         httpClient = HttpClient.create()
-                .option(ChannelOption.CONNECT_TIMEOUT_MILLIS, config.getConnection_timeout())
-                .responseTimeout(Duration.ofMillis(config.getConnection_timeout()))
+                //.option(ChannelOption.CONNECT_TIMEOUT_MILLIS, config.getConnection_timeout())//30000
+                .option(ChannelOption.CONNECT_TIMEOUT_MILLIS, 30000)//30000
+                //.responseTimeout(Duration.ofMillis(config.getConnection_timeout()))
+                .responseTimeout(Duration.ofMillis(30000))
                 .doOnConnected(conn ->
-                        conn.addHandlerLast(new ReadTimeoutHandler(config.getConnection_timeout(), TimeUnit.MILLISECONDS))
-                                .addHandlerLast(new WriteTimeoutHandler(config.getConnection_timeout(), TimeUnit.MILLISECONDS)));
+                        //conn.addHandlerLast(new ReadTimeoutHandler(config.getConnection_timeout(), TimeUnit.MILLISECONDS))
+                        conn.addHandlerLast(new ReadTimeoutHandler(300000, TimeUnit.MILLISECONDS))
+                                //.addHandlerLast(new WriteTimeoutHandler(config.getConnection_timeout(), TimeUnit.MILLISECONDS)));
+                                .addHandlerLast(new WriteTimeoutHandler(300000, TimeUnit.MILLISECONDS)));
 
         client = WebClient.builder()
                 .clientConnector(new ReactorClientHttpConnector(httpClient))
@@ -49,7 +53,8 @@ public class HttpProxy {
     }
     private void acceptedCodecs(ClientCodecConfigurer clientCodecConfigurer) {
         ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-        clientCodecConfigurer.defaultCodecs().maxInMemorySize(config.getMaxBytesInMemory());
+        //clientCodecConfigurer.defaultCodecs().maxInMemorySize(config.getMaxBytesInMemory());
+        clientCodecConfigurer.defaultCodecs().maxInMemorySize(30000000);
         clientCodecConfigurer.customCodecs().registerWithDefaultConfig(new Jackson2JsonEncoder(mapper, MediaType.TEXT_PLAIN));
         clientCodecConfigurer.customCodecs().registerWithDefaultConfig(new Jackson2JsonDecoder(mapper, MediaType.TEXT_PLAIN));
     }

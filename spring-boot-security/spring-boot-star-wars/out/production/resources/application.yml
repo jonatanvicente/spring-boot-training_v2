@@ -3,11 +3,9 @@ spring:
     name: springbootstarwars
   jmx:
     enabled: true
-  profiles:
-    active: pro
-#  config:
-#    activate:
-#      on-profile: dev
+  config:
+    activate:
+      on-profile: dev
 
 
 server:
@@ -21,7 +19,7 @@ management:
 
 url:
   #connection_timeout: 30000
-  #maxBytesInMemory: 30000000
+  maxBytesInMemory: 30000000
   ds_test: https://swapi.py4e.com/api/vehicles/
   secret: SgVkYp3s6v9y$B&E)H+MbQeThWmZq4t7
   headerString: Authorization
