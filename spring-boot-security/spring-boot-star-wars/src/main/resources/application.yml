@@ -3,13 +3,14 @@ spring:
     name: springbootstarwars
   jmx:
     enabled: true
-  #dev, pro
+  #dev, pre, pro
   profiles:
     active: dev
-#  config:
-#    activate:
-#      on-profile: dev
-
+  security:
+    user:
+      name: admin
+      password: 12345
+      roles: ADMIN
 
 server:
   port: 8762

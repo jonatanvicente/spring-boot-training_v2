@@ -30,6 +30,24 @@ public class HttpSecurityConfig {
         }
     }
 
+    @Profile("pre")
+    @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true)
+    @EnableWebSecurity
+    public static class SecurityPasswordConfig extends WebSecurityConfigurerAdapter {
+        @Override
+        protected void configure(HttpSecurity http) throws Exception {
+            http.authorizeRequests()
+                    // require authenticated access to /admin
+                    .antMatchers("/*", "/*/**").authenticated()
+                    // allow anonymous access to all other requests
+                    .anyRequest().permitAll()
+                    // set logout URL
+                    .and().logout().logoutSuccessUrl("/")
+                    // enable http basic authorization
+                    .and().formLogin().and().httpBasic();
+        }
+    }
+
     @Profile("pro")
     @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true)
     @EnableWebSecurity
