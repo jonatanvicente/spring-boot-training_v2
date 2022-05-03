@@ -48,11 +48,4 @@ public class FlightsController {
         return service.airportCount();
     }
 
-    @GetMapping("/airport/{airportId}")
-    @ResponseStatus(HttpStatus.OK)
-    public Mono<?> getAirportById(@PathVariable String airportId){
-        return service.getAirportById(airportId);
-    }
-
-
 }
