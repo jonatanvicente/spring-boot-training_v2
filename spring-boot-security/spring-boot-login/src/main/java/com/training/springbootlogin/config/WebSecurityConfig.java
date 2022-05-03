@@ -1,6 +1,5 @@
 package com.training.springbootlogin.config;
 
-import com.training.springbootlogin.security.SimpleAuthenticationFilter;
 import com.training.springbootlogin.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -21,9 +20,7 @@ import java.io.IOException;
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	
-	@Autowired
-	private SimpleAuthenticationFilter simpleAuthenticationFilter;
-	
+
 	@Autowired
 	private LoginService provider;
 	
