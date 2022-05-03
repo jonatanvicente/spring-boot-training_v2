@@ -3,8 +3,9 @@ spring:
     name: springbootstarwars
   jmx:
     enabled: true
+  #dev, pro
   profiles:
-    active: pro
+    active: dev
 #  config:
 #    activate:
 #      on-profile: dev
