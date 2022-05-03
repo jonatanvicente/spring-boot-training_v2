@@ -1,6 +1,6 @@
 package com.training.springbootlogin.service;
 
-import com.training.springbootlogin.config.SecurityConfig;
+import com.training.springbootlogin.config.SecurityConfigProperties;
 import com.training.springbootlogin.config.SuperUserConfig;
 import com.training.springbootlogin.config.TestUserConfig;
 import com.training.springbootlogin.dto.AuthenticationRequest;
@@ -28,7 +28,7 @@ import java.util.stream.Collectors;
 public class LoginService implements AuthenticationProvider {
 	
 	@Autowired
-	private SecurityConfig config;
+	private SecurityConfigProperties config;
 	
 	@Autowired
 	public LoginService(SuperUserConfig su, TestUserConfig tu) {

@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @ConfigurationProperties("security.datasource")
 @Getter @Setter
-public class SecurityConfig {
+public class SecurityConfigProperties {
 	
 	private String signUpUrl;
 	private String secret;
