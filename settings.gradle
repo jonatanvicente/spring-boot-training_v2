@@ -7,4 +7,5 @@ include 'spring-boot-security:spring-boot-star-wars'
 findProject(':spring-boot-security:spring-boot-star-wars')?.name = 'spring-boot-star-wars'
 include 'spring-boot-security:spring-boot-login'
 findProject(':spring-boot-security:spring-boot-login')?.name = 'spring-boot-login'
+include 'spring-boot-circuitbreaker'
 
