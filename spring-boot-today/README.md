@@ -19,3 +19,4 @@
       - http://localhost:8763/actuator/mappings
       - http://localhost:8763/actuator/scheduledtasks
       - http://localhost:8763/actuator/threaddump
+- Ejemplos de testing en TodayControllerTest

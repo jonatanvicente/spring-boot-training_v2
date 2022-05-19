@@ -38,6 +38,7 @@ public class TodayControllerTest {
 
     @Test
     @DisplayName("Test response Hello")
+    @Order(1)
     public void pingTest(){
         final String URI_TEST = "/ping";
 
@@ -50,12 +51,9 @@ public class TodayControllerTest {
                 .value(s -> s.toString(), equalTo("Hello !!!"));
     }
 
-
-
-
-
-    //@Test
-    //@Order(2)
+    @Test
+    @DisplayName("Test response JSON")
+    @Order(2)
     public void todayJsonTest(){
         final String URI_TEST = "/todayJson";
 
@@ -63,9 +61,6 @@ public class TodayControllerTest {
 
         //condicionado de respuesta
         when(todayService.getTodayObject()).thenReturn(Mono.just(mockDto));
-
-        verify(todayService.getTodayObject());
-
 
         webTestClient.get()
                 .uri(CONTROLLER_BASE_URL + URI_TEST)
