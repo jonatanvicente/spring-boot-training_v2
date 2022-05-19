@@ -10,7 +10,7 @@ spring:
     user:
       name: admin
       password: 12345
-      roles: ADMIN
+      roles: [ADMIN]
 
 server:
   port: 8762

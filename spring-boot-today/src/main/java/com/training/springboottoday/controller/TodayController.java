@@ -14,12 +14,15 @@ import reactor.core.publisher.Mono;
 @RequestMapping(value = "/springboottraining/api/v1/today")
 public class TodayController {
 
+    @Autowired
     private TodayService todayService;
 
-    @Autowired
-    public TodayController(TodayService userService){
-        this.todayService = userService;
+    @GetMapping("/ping")
+    @ResponseStatus(HttpStatus.OK)
+    public String getPing(){
+        return "Hello !!!";
     }
+
 
     @Operation(summary = "You can call this to get date", tags = "Get Date")
     @ApiResponses({
