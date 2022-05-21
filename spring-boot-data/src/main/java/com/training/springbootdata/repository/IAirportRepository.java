@@ -19,7 +19,6 @@ public interface IAirportRepository extends JpaRepository<Airport, String> {
 
     Optional<Airport> findById(String iata);
 
-    //pendiente de implementación
     List<Airport> findAll(Sort sort);
 
 /*    @Query(
