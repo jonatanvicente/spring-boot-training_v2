@@ -8,7 +8,9 @@ import static org.hamcrest.Matchers.equalTo;
 
 import com.training.springboottoday.controller.TodayController;
 import com.training.springboottoday.dto.TodayJsonDto;
+import com.training.springboottoday.dto.TodayPattern;
 import com.training.springboottoday.service.TodayService;
+import org.json.JSONObject;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,10 +19,14 @@ import org.springframework.boot.test.autoconfigure.web.reactive.WebFluxTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Import;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
+import org.springframework.http.client.reactive.ClientHttpRequest;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.reactive.server.WebTestClient;
+import org.springframework.web.reactive.function.BodyInserter;
+import org.springframework.web.reactive.function.BodyInserters;
 import reactor.core.publisher.Mono;
 
 @ExtendWith(SpringExtension.class)
@@ -48,7 +54,7 @@ public class TodayControllerTest {
                 .exchange()
                 .expectStatus().isOk()
                 .expectBody(String.class)
-                .value(s -> s.toString(), equalTo("Hello !!!"));
+                .value(s -> s.toString(), equalTo("Bonjour !!!"));
     }
 
     @Test
@@ -71,6 +77,35 @@ public class TodayControllerTest {
                 .expectBody()
                 .jsonPath("$.today")
                 .isEqualTo("01/01/70 00:00:00");
+    }
 
+
+    @Test
+    @DisplayName("Test request GET with body JSON")
+    @Order(3)
+    public void todayJsonParameterizedTest(){
+
+        final String URI_TEST = "/todayJsonParameterized";
+
+        TodayPattern patternMock = new TodayPattern();
+        patternMock.setPattern("dd/MM/yy HH:mm:ss");
+        TodayJsonDto mockDto = new TodayJsonDto("01/01/70 00:00:00");
+
+        when(todayService.getTodayObject()).thenReturn(Mono.just(mockDto));
+//TODO- error test
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("pattern", "dd/MM/yy HH:mm:ss");
+
+        webTestClient.method(HttpMethod.GET)
+                .uri(CONTROLLER_BASE_URL + URI_TEST)
+                .header("Content-Type", "application/json")
+                .accept(MediaType.APPLICATION_JSON)
+                .body(BodyInserters.fromValue(jsonObject))
+                .exchange()
+                .expectStatus().isOk()
+                .expectHeader().contentType(MediaType.APPLICATION_JSON)
+                .expectBody()
+                .jsonPath("$.today")
+                .isEqualTo("01/01/70 00:00:00");
     }
 }

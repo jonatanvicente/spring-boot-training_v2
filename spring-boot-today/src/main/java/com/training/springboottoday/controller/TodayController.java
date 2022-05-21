@@ -20,7 +20,7 @@ public class TodayController {
     @GetMapping("/ping")
     @ResponseStatus(HttpStatus.OK)
     public String getPing(){
-        return "Hello !!!";
+        return "Bonjour !!!";
     }
 
 
