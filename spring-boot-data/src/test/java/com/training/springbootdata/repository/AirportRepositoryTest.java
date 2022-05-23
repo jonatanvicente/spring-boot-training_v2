@@ -19,6 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.sql.DataSource;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -59,6 +60,41 @@ public class AirportRepositoryTest {
 		assertTrue(airportRepository.existsById(iata));
 	}
 
-	//TODO - Testing methods delete / save
+	@Test
+	@DisplayName("Test Find All Airports")
+	@Order(3)
+	void findAllTest() {
+		assertEquals(airportRepository.count(), airportRepository.findAll().size());
+	}
+
+	@Test
+	@DisplayName("Test Save Airport")
+	@Order(4)
+	void saveAirportTest() {
+
+		Airport airport = new Airport();
+		airport.setCity("Sevilla");
+		airport.setIata("SEV");
+		airport.setAirport("San Pablo");
+		airport.setState("Spain");
+		airportRepository.saveAndFlush(airport);
+
+		Optional<Airport> airportSaved = airportRepository.findById("SEV");
+		assertThat(airportSaved.get().getIata()).isNotEmpty();
+		assertEquals("SEV", airportSaved.get().getIata());
+		assertEquals("San Pablo", airportSaved.get().getAirport());
+
+	}
+
+	@Test
+	@DisplayName("Test Delete Airport")
+	@Order(5)
+	void deleteAirportTest() {
+
+		String iata = "00R";
+		airportRepository.deleteById(iata);
+		Optional<Airport> airport = airportRepository.findById(iata);
+		assertTrue(airport.isEmpty());
+	}
 
 }
