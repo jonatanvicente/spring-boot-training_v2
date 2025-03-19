@@ -7,6 +7,50 @@
 	},
 	"item": [
 		{
+			"name": "GET Initial - Test",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8763/springboottraining/api/v1/initial/test",
+					"host": [
+						"localhost"
+					],
+					"port": "8763",
+					"path": [
+						"springboottraining",
+						"api",
+						"v1",
+						"initial",
+						"test"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Initial - Test Reactive",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8763/springboottraining/api/v1/initial/test-reactive",
+					"host": [
+						"localhost"
+					],
+					"port": "8763",
+					"path": [
+						"springboottraining",
+						"api",
+						"v1",
+						"initial",
+						"test-reactive"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "GET Today - Ping",
 			"request": {
 				"method": "GET",
@@ -140,50 +184,6 @@
 						"data",
 						"airport",
 						"count"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "GET Initial - Test",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "localhost:8763/springboottraining/api/v1/initial/test",
-					"host": [
-						"localhost"
-					],
-					"port": "8763",
-					"path": [
-						"springboottraining",
-						"api",
-						"v1",
-						"initial",
-						"test"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "GET Initial - Test Reactive",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "localhost:8763/springboottraining/api/v1/initial/test-reactive",
-					"host": [
-						"localhost"
-					],
-					"port": "8763",
-					"path": [
-						"springboottraining",
-						"api",
-						"v1",
-						"initial",
-						"test-reactive"
 					]
 				}
 			},
